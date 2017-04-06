@@ -1,0 +1,453 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5B2FDCCD191C118686342ABC /* Pods_kaamelott.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BF01A0C3AF2E75787CF4D0 /* Pods_kaamelott.framework */; };
+		EA10B35E1E9666B800F6C3B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10B35D1E9666B800F6C3B8 /* AppDelegate.swift */; };
+		EA10B3631E9666B800F6C3B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA10B3611E9666B800F6C3B8 /* Main.storyboard */; };
+		EA10B3651E9666B800F6C3B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA10B3641E9666B800F6C3B8 /* Assets.xcassets */; };
+		EA10B3681E9666B800F6C3B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA10B3661E9666B800F6C3B8 /* LaunchScreen.storyboard */; };
+		EA10B3711E96670F00F6C3B8 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10B3701E96670F00F6C3B8 /* Sound.swift */; };
+		EA122E231E96754400F88C33 /* Kaamelott.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EA122E211E96754400F88C33 /* Kaamelott.xcdatamodeld */; };
+		EA122E261E9677B500F88C33 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA122E251E9677B500F88C33 /* LoadingViewController.swift */; };
+		EAB618961E967A7900EC2EF6 /* SoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618951E967A7900EC2EF6 /* SoundTableViewController.swift */; };
+		EAB618981E967AE900EC2EF6 /* SoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618971E967AE900EC2EF6 /* SoundTableViewCell.swift */; };
+		EAB6189B1E9681A900EC2EF6 /* SequenceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB6189A1E9681A900EC2EF6 /* SequenceExtension.swift */; };
+		EAB6189D1E9683A300EC2EF6 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB6189C1E9683A300EC2EF6 /* UIColorExtension.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		33BF01A0C3AF2E75787CF4D0 /* Pods_kaamelott.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kaamelott.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		53E0EF16A8304AE053B2B8C8 /* Pods-kaamelott.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kaamelott.release.xcconfig"; path = "Pods/Target Support Files/Pods-kaamelott/Pods-kaamelott.release.xcconfig"; sourceTree = "<group>"; };
+		A91BCB9AB62AF6D95F06575D /* Pods-kaamelott.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kaamelott.debug.xcconfig"; path = "Pods/Target Support Files/Pods-kaamelott/Pods-kaamelott.debug.xcconfig"; sourceTree = "<group>"; };
+		EA10B35A1E9666B800F6C3B8 /* kaamelott.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kaamelott.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA10B35D1E9666B800F6C3B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EA10B3621E9666B800F6C3B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EA10B3641E9666B800F6C3B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EA10B3671E9666B800F6C3B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EA10B3691E9666B800F6C3B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA10B3701E96670F00F6C3B8 /* Sound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sound.swift; path = model/Sound.swift; sourceTree = "<group>"; };
+		EA122E221E96754400F88C33 /* Kaamelott.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Kaamelott.xcdatamodel; sourceTree = "<group>"; };
+		EA122E251E9677B500F88C33 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		EAB618951E967A7900EC2EF6 /* SoundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundTableViewController.swift; sourceTree = "<group>"; };
+		EAB618971E967AE900EC2EF6 /* SoundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundTableViewCell.swift; sourceTree = "<group>"; };
+		EAB6189A1E9681A900EC2EF6 /* SequenceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SequenceExtension.swift; path = utils/SequenceExtension.swift; sourceTree = "<group>"; };
+		EAB6189C1E9683A300EC2EF6 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = utils/UIColorExtension.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EA10B3571E9666B800F6C3B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B2FDCCD191C118686342ABC /* Pods_kaamelott.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C66AECFD411CE24BEC12F7DE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				33BF01A0C3AF2E75787CF4D0 /* Pods_kaamelott.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E4203CFD05E4DC6FFA265B46 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A91BCB9AB62AF6D95F06575D /* Pods-kaamelott.debug.xcconfig */,
+				53E0EF16A8304AE053B2B8C8 /* Pods-kaamelott.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EA10B3511E9666B800F6C3B8 = {
+			isa = PBXGroup;
+			children = (
+				EA10B35C1E9666B800F6C3B8 /* kaamelott */,
+				EA10B35B1E9666B800F6C3B8 /* Products */,
+				E4203CFD05E4DC6FFA265B46 /* Pods */,
+				C66AECFD411CE24BEC12F7DE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EA10B35B1E9666B800F6C3B8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA10B35A1E9666B800F6C3B8 /* kaamelott.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EA10B35C1E9666B800F6C3B8 /* kaamelott */ = {
+			isa = PBXGroup;
+			children = (
+				EAB618991E96819200EC2EF6 /* utils */,
+				EA10B36F1E9666F700F6C3B8 /* model */,
+				EA122E241E96779A00F88C33 /* controller */,
+				EA10B35D1E9666B800F6C3B8 /* AppDelegate.swift */,
+				EA10B3611E9666B800F6C3B8 /* Main.storyboard */,
+				EA10B3641E9666B800F6C3B8 /* Assets.xcassets */,
+				EA10B3661E9666B800F6C3B8 /* LaunchScreen.storyboard */,
+				EA10B3691E9666B800F6C3B8 /* Info.plist */,
+			);
+			path = kaamelott;
+			sourceTree = "<group>";
+		};
+		EA10B36F1E9666F700F6C3B8 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				EA10B3701E96670F00F6C3B8 /* Sound.swift */,
+				EA122E211E96754400F88C33 /* Kaamelott.xcdatamodeld */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		EA122E241E96779A00F88C33 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				EA122E251E9677B500F88C33 /* LoadingViewController.swift */,
+				EAB618951E967A7900EC2EF6 /* SoundTableViewController.swift */,
+				EAB618971E967AE900EC2EF6 /* SoundTableViewCell.swift */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		EAB618991E96819200EC2EF6 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				EAB6189A1E9681A900EC2EF6 /* SequenceExtension.swift */,
+				EAB6189C1E9683A300EC2EF6 /* UIColorExtension.swift */,
+			);
+			name = utils;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EA10B3591E9666B800F6C3B8 /* kaamelott */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA10B36C1E9666B800F6C3B8 /* Build configuration list for PBXNativeTarget "kaamelott" */;
+			buildPhases = (
+				B747331FCA6B85361BFB1ACD /* [CP] Check Pods Manifest.lock */,
+				EA10B3561E9666B800F6C3B8 /* Sources */,
+				EA10B3571E9666B800F6C3B8 /* Frameworks */,
+				EA10B3581E9666B800F6C3B8 /* Resources */,
+				520D6903A35DA74566F05731 /* [CP] Embed Pods Frameworks */,
+				950098ABEEDAE513C089C4BA /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = kaamelott;
+			productName = kaamelott;
+			productReference = EA10B35A1E9666B800F6C3B8 /* kaamelott.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EA10B3521E9666B800F6C3B8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = hubmobile;
+				TargetAttributes = {
+					EA10B3591E9666B800F6C3B8 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = 8FH9PSF7AS;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = EA10B3551E9666B800F6C3B8 /* Build configuration list for PBXProject "kaamelott" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EA10B3511E9666B800F6C3B8;
+			productRefGroup = EA10B35B1E9666B800F6C3B8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EA10B3591E9666B800F6C3B8 /* kaamelott */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EA10B3581E9666B800F6C3B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA10B3681E9666B800F6C3B8 /* LaunchScreen.storyboard in Resources */,
+				EA10B3651E9666B800F6C3B8 /* Assets.xcassets in Resources */,
+				EA10B3631E9666B800F6C3B8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		520D6903A35DA74566F05731 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-kaamelott/Pods-kaamelott-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		950098ABEEDAE513C089C4BA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-kaamelott/Pods-kaamelott-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B747331FCA6B85361BFB1ACD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EA10B3561E9666B800F6C3B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA122E231E96754400F88C33 /* Kaamelott.xcdatamodeld in Sources */,
+				EAB6189B1E9681A900EC2EF6 /* SequenceExtension.swift in Sources */,
+				EA122E261E9677B500F88C33 /* LoadingViewController.swift in Sources */,
+				EAB6189D1E9683A300EC2EF6 /* UIColorExtension.swift in Sources */,
+				EA10B3711E96670F00F6C3B8 /* Sound.swift in Sources */,
+				EA10B35E1E9666B800F6C3B8 /* AppDelegate.swift in Sources */,
+				EAB618981E967AE900EC2EF6 /* SoundTableViewCell.swift in Sources */,
+				EAB618961E967A7900EC2EF6 /* SoundTableViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EA10B3611E9666B800F6C3B8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA10B3621E9666B800F6C3B8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EA10B3661E9666B800F6C3B8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA10B3671E9666B800F6C3B8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EA10B36A1E9666B800F6C3B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EA10B36B1E9666B800F6C3B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EA10B36D1E9666B800F6C3B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A91BCB9AB62AF6D95F06575D /* Pods-kaamelott.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8FH9PSF7AS;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				INFOPLIST_FILE = kaamelott/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hubmobile.kaamelott;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		EA10B36E1E9666B800F6C3B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53E0EF16A8304AE053B2B8C8 /* Pods-kaamelott.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8FH9PSF7AS;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				INFOPLIST_FILE = kaamelott/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hubmobile.kaamelott;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EA10B3551E9666B800F6C3B8 /* Build configuration list for PBXProject "kaamelott" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA10B36A1E9666B800F6C3B8 /* Debug */,
+				EA10B36B1E9666B800F6C3B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA10B36C1E9666B800F6C3B8 /* Build configuration list for PBXNativeTarget "kaamelott" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA10B36D1E9666B800F6C3B8 /* Debug */,
+				EA10B36E1E9666B800F6C3B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EA122E211E96754400F88C33 /* Kaamelott.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EA122E221E96754400F88C33 /* Kaamelott.xcdatamodel */,
+			);
+			currentVersion = EA122E221E96754400F88C33 /* Kaamelott.xcdatamodel */;
+			name = Kaamelott.xcdatamodeld;
+			path = model/Kaamelott.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = EA10B3521E9666B800F6C3B8 /* Project object */;
+}
