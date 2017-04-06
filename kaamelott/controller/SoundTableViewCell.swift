@@ -10,10 +10,9 @@ import UIKit
 
 class SoundTableViewCell: UITableViewCell {
     
-    @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var locationLabel: UILabel!
-    @IBOutlet var typeLabel: UILabel!
-    @IBOutlet var thumbnailImageView: UIImageView!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var characterLabel: UILabel!
+    @IBOutlet var episodeLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,7 +21,6 @@ class SoundTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 

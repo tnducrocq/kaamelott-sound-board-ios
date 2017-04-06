@@ -61,7 +61,7 @@ class SoundTableViewController: UITableViewController, NSFetchedResultsControlle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //navigationController?.hidesBarsOnSwipe = true
+        navigationController?.hidesBarsOnSwipe = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -129,13 +129,10 @@ class SoundTableViewController: UITableViewController, NSFetchedResultsControlle
         let sound = (searchController.isActive) ? searchResults[indexPath.row] : sounds[indexPath.row]
         
         // Configure the cell...
-        cell.nameLabel.text = sound.title
-        //cell.thumbnailImageView.image = UIImage(data: sound.image as! Data)
-        cell.locationLabel.text = sound.character
-        cell.typeLabel.text = sound.episode
-        
-        //cell.accessoryType = sound.isVisited ? .checkmark : .none
-        
+        cell.titleLabel.text = sound.title
+        cell.characterLabel.text = sound.character
+        cell.episodeLabel.text = sound.episode
+                
         return cell
     }
     

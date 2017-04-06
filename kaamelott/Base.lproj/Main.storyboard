@@ -24,76 +24,64 @@
                         <color key="backgroundColor" red="0.1803921568627451" green="0.75294117647058822" blue="0.70588235294117641" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
-                        <segue destination="W4t-qH-Zou" kind="show" identifier="main" id="enn-Vi-gcE"/>
+                        <segue destination="O23-64-m9d" kind="show" identifier="main" id="37Q-ij-E54"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="Yqa-qE-ZzQ">
+        <scene sceneID="Nph-Ph-AuE">
             <objects>
-                <navigationController id="W4t-qH-Zou" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="i5o-zI-AhU">
+                <navigationController id="O23-64-m9d" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vpZ-2H-DeD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="ZnP-zg-wFm" kind="relationship" relationship="rootViewController" id="k0R-f6-l78"/>
+                        <segue destination="Yx2-5r-u7G" kind="relationship" relationship="rootViewController" id="pE8-aN-oYP"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uUW-TJ-EqJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eUl-dV-Aci" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="946" y="36"/>
+            <point key="canvasLocation" x="961" y="36"/>
         </scene>
-        <!--Kaamelott Sound Board-->
-        <scene sceneID="GOS-nP-KIi">
+        <!--Kaamelott-->
+        <scene sceneID="End-r0-zuO">
             <objects>
-                <tableViewController id="ZnP-zg-wFm" customClass="SoundTableViewController" customModule="kaamelott" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" id="XTT-94-G0N">
+                <tableViewController id="Yx2-5r-u7G" userLabel="Kaamelott" customClass="SoundTableViewController" customModule="kaamelott" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" id="hMP-nh-1Mf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="80" id="6Hc-rM-fOF" customClass="SoundTableViewCell" customModule="kaamelott" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="80" id="edm-hq-F2d" customClass="SoundTableViewCell" customModule="kaamelott" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Hc-rM-fOF" id="7zB-FN-Xpa">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="edm-hq-F2d" id="oTN-mS-VcE">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Pee-EA-DfZ">
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wwX-cU-wDG">
                                             <rect key="frame" x="14" y="10" width="353" height="60"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JRj-xj-3yL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="BzB-F2-rW6"/>
-                                                        <constraint firstAttribute="width" constant="60" id="ZHp-21-uBw"/>
-                                                    </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="30"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="XGG-SW-RvF">
-                                                    <rect key="frame" x="70" y="0.0" width="283" height="55.5"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="kAS-uH-17R">
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="55.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mx3-hO-ga7">
-                                                            <rect key="frame" x="0.0" y="0.0" width="283" height="20.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbn-Kb-JLU">
+                                                            <rect key="frame" x="0.0" y="0.0" width="353" height="20.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DrE-rA-SfM">
-                                                            <rect key="frame" x="0.0" y="21.5" width="283" height="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Character" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EdX-Rk-Vhf">
+                                                            <rect key="frame" x="0.0" y="21.5" width="353" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eyV-K6-nNb">
-                                                            <rect key="frame" x="0.0" y="39.5" width="283" height="16"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Episode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uR9-dO-cFV">
+                                                            <rect key="frame" x="0.0" y="39.5" width="353" height="16"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -104,30 +92,29 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Pee-EA-DfZ" firstAttribute="leading" secondItem="7zB-FN-Xpa" secondAttribute="leadingMargin" constant="6" id="6Nm-u2-N4i"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Pee-EA-DfZ" secondAttribute="bottom" constant="1.5" id="75K-lo-UWC"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="Pee-EA-DfZ" secondAttribute="trailing" id="bDO-6Y-3cB"/>
-                                        <constraint firstItem="Pee-EA-DfZ" firstAttribute="top" secondItem="7zB-FN-Xpa" secondAttribute="topMargin" constant="2" id="xyz-7q-oTN"/>
+                                        <constraint firstItem="wwX-cU-wDG" firstAttribute="top" secondItem="oTN-mS-VcE" secondAttribute="topMargin" constant="2" id="3BE-6F-2lZ"/>
+                                        <constraint firstItem="wwX-cU-wDG" firstAttribute="leading" secondItem="oTN-mS-VcE" secondAttribute="leadingMargin" constant="6" id="UV0-Jl-JKw"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="wwX-cU-wDG" secondAttribute="trailing" id="en1-v1-dek"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="wwX-cU-wDG" secondAttribute="bottom" constant="1.5" id="tv0-ML-R8a"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="locationLabel" destination="DrE-rA-SfM" id="gyA-LL-Cv0"/>
-                                    <outlet property="nameLabel" destination="Mx3-hO-ga7" id="hzk-lb-Hb7"/>
-                                    <outlet property="thumbnailImageView" destination="JRj-xj-3yL" id="g0E-Qh-VXJ"/>
-                                    <outlet property="typeLabel" destination="eyV-K6-nNb" id="T29-Rf-VyC"/>
+                                    <outlet property="characterLabel" destination="EdX-Rk-Vhf" id="ALn-k1-gbW"/>
+                                    <outlet property="episodeLabel" destination="uR9-dO-cFV" id="fif-dz-VPh"/>
+                                    <outlet property="titleLabel" destination="Tbn-Kb-JLU" id="DLQ-kK-uJf"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="ZnP-zg-wFm" id="NZL-bC-zsf"/>
-                            <outlet property="delegate" destination="ZnP-zg-wFm" id="ZhH-Lj-EOy"/>
+                            <outlet property="dataSource" destination="Yx2-5r-u7G" id="mf4-yc-n0j"/>
+                            <outlet property="delegate" destination="Yx2-5r-u7G" id="BUd-Ua-Mp1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Kaamelott Sound Board" id="1J1-i4-F0f"/>
+                    <navigationItem key="navigationItem" title="Kaamelott Sound Board" id="fap-Rc-FVF"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xvb-MM-ZvR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zQX-ps-X02" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1888.8" y="36.431784107946029"/>
+            <point key="canvasLocation" x="1905" y="36"/>
         </scene>
     </scenes>
 </document>

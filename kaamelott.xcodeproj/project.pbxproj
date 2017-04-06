@@ -14,11 +14,12 @@
 		EA10B3681E9666B800F6C3B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA10B3661E9666B800F6C3B8 /* LaunchScreen.storyboard */; };
 		EA10B3711E96670F00F6C3B8 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10B3701E96670F00F6C3B8 /* Sound.swift */; };
 		EA122E231E96754400F88C33 /* Kaamelott.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EA122E211E96754400F88C33 /* Kaamelott.xcdatamodeld */; };
-		EA122E261E9677B500F88C33 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA122E251E9677B500F88C33 /* LoadingViewController.swift */; };
-		EAB618961E967A7900EC2EF6 /* SoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618951E967A7900EC2EF6 /* SoundTableViewController.swift */; };
-		EAB618981E967AE900EC2EF6 /* SoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618971E967AE900EC2EF6 /* SoundTableViewCell.swift */; };
 		EAB6189B1E9681A900EC2EF6 /* SequenceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB6189A1E9681A900EC2EF6 /* SequenceExtension.swift */; };
 		EAB6189D1E9683A300EC2EF6 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB6189C1E9683A300EC2EF6 /* UIColorExtension.swift */; };
+		EAB618A31E968BD400EC2EF6 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618A01E968BD400EC2EF6 /* LoadingViewController.swift */; };
+		EAB618A41E968BD400EC2EF6 /* SoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618A11E968BD400EC2EF6 /* SoundTableViewCell.swift */; };
+		EAB618A51E968BD400EC2EF6 /* SoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618A21E968BD400EC2EF6 /* SoundTableViewController.swift */; };
+		EAB618A91E96973400EC2EF6 /* SoundProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618A81E96973400EC2EF6 /* SoundProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,11 +34,12 @@
 		EA10B3691E9666B800F6C3B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA10B3701E96670F00F6C3B8 /* Sound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sound.swift; path = model/Sound.swift; sourceTree = "<group>"; };
 		EA122E221E96754400F88C33 /* Kaamelott.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Kaamelott.xcdatamodel; sourceTree = "<group>"; };
-		EA122E251E9677B500F88C33 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
-		EAB618951E967A7900EC2EF6 /* SoundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundTableViewController.swift; sourceTree = "<group>"; };
-		EAB618971E967AE900EC2EF6 /* SoundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundTableViewCell.swift; sourceTree = "<group>"; };
 		EAB6189A1E9681A900EC2EF6 /* SequenceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SequenceExtension.swift; path = utils/SequenceExtension.swift; sourceTree = "<group>"; };
 		EAB6189C1E9683A300EC2EF6 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = utils/UIColorExtension.swift; sourceTree = "<group>"; };
+		EAB618A01E968BD400EC2EF6 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingViewController.swift; path = controller/LoadingViewController.swift; sourceTree = "<group>"; };
+		EAB618A11E968BD400EC2EF6 /* SoundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundTableViewCell.swift; path = controller/SoundTableViewCell.swift; sourceTree = "<group>"; };
+		EAB618A21E968BD400EC2EF6 /* SoundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundTableViewController.swift; path = controller/SoundTableViewController.swift; sourceTree = "<group>"; };
+		EAB618A81E96973400EC2EF6 /* SoundProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +97,8 @@
 				EA122E241E96779A00F88C33 /* controller */,
 				EA10B35D1E9666B800F6C3B8 /* AppDelegate.swift */,
 				EA10B3611E9666B800F6C3B8 /* Main.storyboard */,
-				EA10B3641E9666B800F6C3B8 /* Assets.xcassets */,
 				EA10B3661E9666B800F6C3B8 /* LaunchScreen.storyboard */,
+				EA10B3641E9666B800F6C3B8 /* Assets.xcassets */,
 				EA10B3691E9666B800F6C3B8 /* Info.plist */,
 			);
 			path = kaamelott;
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				EA10B3701E96670F00F6C3B8 /* Sound.swift */,
+				EAB618A81E96973400EC2EF6 /* SoundProvider.swift */,
 				EA122E211E96754400F88C33 /* Kaamelott.xcdatamodeld */,
 			);
 			name = model;
@@ -114,9 +117,9 @@
 		EA122E241E96779A00F88C33 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				EA122E251E9677B500F88C33 /* LoadingViewController.swift */,
-				EAB618951E967A7900EC2EF6 /* SoundTableViewController.swift */,
-				EAB618971E967AE900EC2EF6 /* SoundTableViewCell.swift */,
+				EAB618A01E968BD400EC2EF6 /* LoadingViewController.swift */,
+				EAB618A11E968BD400EC2EF6 /* SoundTableViewCell.swift */,
+				EAB618A21E968BD400EC2EF6 /* SoundTableViewController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -254,14 +257,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAB618A31E968BD400EC2EF6 /* LoadingViewController.swift in Sources */,
 				EA122E231E96754400F88C33 /* Kaamelott.xcdatamodeld in Sources */,
 				EAB6189B1E9681A900EC2EF6 /* SequenceExtension.swift in Sources */,
-				EA122E261E9677B500F88C33 /* LoadingViewController.swift in Sources */,
+				EAB618A91E96973400EC2EF6 /* SoundProvider.swift in Sources */,
 				EAB6189D1E9683A300EC2EF6 /* UIColorExtension.swift in Sources */,
 				EA10B3711E96670F00F6C3B8 /* Sound.swift in Sources */,
 				EA10B35E1E9666B800F6C3B8 /* AppDelegate.swift in Sources */,
-				EAB618981E967AE900EC2EF6 /* SoundTableViewCell.swift in Sources */,
-				EAB618961E967A7900EC2EF6 /* SoundTableViewController.swift in Sources */,
+				EAB618A41E968BD400EC2EF6 /* SoundTableViewCell.swift in Sources */,
+				EAB618A51E968BD400EC2EF6 /* SoundTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
