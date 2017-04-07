@@ -125,8 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				EAB618A01E968BD400EC2EF6 /* LoadingViewController.swift */,
-				EAB618A11E968BD400EC2EF6 /* SoundTableViewCell.swift */,
 				EAB618A21E968BD400EC2EF6 /* SoundTableViewController.swift */,
+				EAB618A11E968BD400EC2EF6 /* SoundTableViewCell.swift */,
 				EAB618AA1E969EB200EC2EF6 /* CharacterTableViewController.swift */,
 				EAB618AC1E96A39600EC2EF6 /* CharacterTableViewCell.swift */,
 			);

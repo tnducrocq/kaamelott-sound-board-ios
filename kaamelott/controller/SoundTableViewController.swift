@@ -55,7 +55,7 @@ class SoundTableViewController: UITableViewController, NSFetchedResultsControlle
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search sounds..."
         searchController.searchBar.tintColor = UIColor.white
-        searchController.searchBar.barTintColor = UIColor(red: 236.0/255.0, green: 236.0/255.0, blue: 236.0/255.0, alpha: 1.0)
+        searchController.searchBar.barTintColor = UIColor.kaamelott
     }
     
     override func viewWillAppear(_ animated: Bool) {
