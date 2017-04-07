@@ -11,13 +11,37 @@ import CoreData
 import AVFoundation
 import Haneke
 
-class CharacterTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class CharacterTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchResultsUpdating {
     
     var player: AVAudioPlayer?
     var fetchResultController: NSFetchedResultsController<SoundMO>!
     
     var characters : [String] = []
-    var sounds:[String : [SoundMO]] = [:]
+    var searchCharacters : [String] = []
+    var displayedCharacters : [String] {
+        get {
+            if searchController.isActive {
+                return searchCharacters
+            } else {
+                return characters
+            }
+        }
+    }
+    var sounds : [String : [SoundMO]] = [:]
+    var searchResults : [String : [SoundMO]] = [:]
+    var displayedSounds : [String : [SoundMO]] {
+        get {
+            if searchController.isActive {
+                return searchResults
+            } else {
+                return sounds
+            }
+        }
+    }
+    
+    lazy var searchController: UISearchController = {
+        return UISearchController(searchResultsController: nil)
+    }()
     
     lazy var customRefreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -44,15 +68,15 @@ class CharacterTableViewController: UITableViewController, NSFetchedResultsContr
         
         // Register to receive notification
         NotificationCenter.default.addObserver(self, selector: #selector(fetchData), name: Notification.Name("SoundAdded"), object: nil)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //navigationController?.hidesBarsOnSwipe = true
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        
+        // Add a search bar
+        //searchController = UISearchController(searchResultsController: nil)
+        tableView.tableHeaderView = searchController.searchBar
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search sounds..."
+        searchController.searchBar.tintColor = UIColor.white
+        searchController.searchBar.barTintColor = UIColor.kaamelott
     }
     
     func handleRefresh() {
@@ -98,34 +122,25 @@ class CharacterTableViewController: UITableViewController, NSFetchedResultsContr
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return characters.count
+        return displayedCharacters.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let character = characters[section]
-        if let values = sounds[character] {
+        let character = displayedCharacters[section]
+        if let values = displayedSounds[character] {
             return values.count
         }
         return 0
     }
-    /*
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return characters[section]
-    }*/
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell") as! CharacterTableViewCell
         headerCell.backgroundColor = UIColor.kaamelott
-        headerCell.characterLabel.text = characters[section]
-        if let image = charactersImage[characters[section]] {
+        headerCell.characterLabel.text = displayedCharacters[section]
+        if let image = charactersImage[displayedCharacters[section]] {
             headerCell.characterImageView.image = UIImage(named : image)
         } else {
             headerCell.characterImageView.image = nil
@@ -142,8 +157,8 @@ class CharacterTableViewController: UITableViewController, NSFetchedResultsContr
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SoundTableViewCell
         
-        let character = characters[indexPath.section]
-        guard let values = sounds[character] else {
+        let character = displayedCharacters[indexPath.section]
+        guard let values = displayedSounds[character] else {
               return cell
         }
         let sound = values[indexPath.row]
@@ -158,8 +173,8 @@ class CharacterTableViewController: UITableViewController, NSFetchedResultsContr
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let character = characters[indexPath.section]
-        guard let values = sounds[character] else {
+        let character = displayedCharacters[indexPath.section]
+        guard let values = displayedSounds[character] else {
             return
         }
         let sound = values[indexPath.row]
@@ -182,6 +197,36 @@ class CharacterTableViewController: UITableViewController, NSFetchedResultsContr
             } catch let error {
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    // MARK: - Search Controller
+    
+    func filterContent(for searchText: String) {
+        searchResults = [:]
+        searchCharacters = []
+        for character in characters {
+            if sounds.index(forKey: character) != nil {
+                var values : [SoundMO] = []
+                for sound in sounds[character]! {
+                    if let character = sound.character, let title = sound.title, let episode = sound.episode {
+                        if character.localizedCaseInsensitiveContains(searchText) || title.localizedCaseInsensitiveContains(searchText) || episode.localizedCaseInsensitiveContains(searchText) {
+                            values.append(sound)
+                        }
+                    }
+                }
+                if !values.isEmpty {
+                    searchResults[character] = values
+                    searchCharacters.append(character)
+                }
+            }
+        }
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            filterContent(for: searchText)
+            tableView.reloadData()
         }
     }
 }
