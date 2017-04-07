@@ -1,28 +1,26 @@
 //
-//  RestaurantTableViewCell.swift
-//  FoodPin
+//  CharacterViewCell.swift
+//  kaamelott
 //
-//  Created by Simon Ng on 11/7/2016.
-//  Copyright © 2016 AppCoda. All rights reserved.
+//  Created by Tony Ducrocq on 06/04/2017.
+//  Copyright © 2017 hubmobile. All rights reserved.
 //
 
 import UIKit
 
-class SoundTableViewCell: UITableViewCell {
+class CharacterTableViewCell: UITableViewCell {
     
-    @IBOutlet var titleLabel: UILabel!
     @IBOutlet var characterLabel: UILabel!
-    @IBOutlet var episodeLabel: UILabel!
     @IBOutlet var characterImageView: UIImageView!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
-
+    
 }

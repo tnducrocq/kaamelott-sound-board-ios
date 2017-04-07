@@ -1,5 +1,5 @@
 //
-//  SoundTableViewController.swift
+//  CharacterTableViewController.swift
 //  kaamelott
 //
 //  Created by Tony Ducrocq on 06/04/2017.
@@ -11,16 +11,13 @@ import CoreData
 import AVFoundation
 import Haneke
 
-class SoundTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchResultsUpdating {
+class CharacterTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     var player: AVAudioPlayer?
     var fetchResultController: NSFetchedResultsController<SoundMO>!
-    var sounds:[SoundMO] = []
-    var searchResults:[SoundMO] = []
     
-    lazy var searchController: UISearchController = {
-        return UISearchController(searchResultsController: nil)
-    }()
+    var characters : [String] = []
+    var sounds:[String : [SoundMO]] = [:]
     
     lazy var customRefreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -47,15 +44,6 @@ class SoundTableViewController: UITableViewController, NSFetchedResultsControlle
         
         // Register to receive notification
         NotificationCenter.default.addObserver(self, selector: #selector(fetchData), name: Notification.Name("SoundAdded"), object: nil)
-        
-        // Add a search bar
-        //searchController = UISearchController(searchResultsController: nil)
-        tableView.tableHeaderView = searchController.searchBar
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search sounds..."
-        searchController.searchBar.tintColor = UIColor.white
-        searchController.searchBar.barTintColor = UIColor(red: 236.0/255.0, green: 236.0/255.0, blue: 236.0/255.0, alpha: 1.0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,7 +66,7 @@ class SoundTableViewController: UITableViewController, NSFetchedResultsControlle
     func fetchData(completion: fetchDataCompletionHandler? = nil) {
         DispatchQueue.global(qos: .background).async {
             let fetchRequest: NSFetchRequest<SoundMO> = SoundMO.fetchRequest()
-            let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+            let sortDescriptor = NSSortDescriptor(key: "character", ascending: true)
             fetchRequest.sortDescriptors = [sortDescriptor]
             
             if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
@@ -87,7 +75,17 @@ class SoundTableViewController: UITableViewController, NSFetchedResultsControlle
                 do {
                     try self.fetchResultController.performFetch()
                     if let fetchedObjects = self.fetchResultController.fetchedObjects {
-                        self.sounds = fetchedObjects
+                        
+                        self.characters = []
+                        self.sounds = [:]
+                        for object in fetchedObjects {
+                            if self.sounds.index(forKey: object.character!) == nil {
+                                self.characters.append(object.character!)
+                                self.sounds[object.character!] = [object]
+                            } else {
+                                self.sounds[object.character!]?.append(object)
+                            }
+                        }
                         
                     }
                 } catch {
@@ -108,15 +106,35 @@ class SoundTableViewController: UITableViewController, NSFetchedResultsControlle
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return characters.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.isActive {
-            return searchResults.count
-        } else {
-            return sounds.count
+        let character = characters[section]
+        if let values = sounds[character] {
+            return values.count
         }
+        return 0
+    }
+    /*
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return characters[section]
+    }*/
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let  headerCell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell") as! CharacterTableViewCell
+        headerCell.backgroundColor = UIColor.kaamelott
+        headerCell.characterLabel.text = characters[section]
+        if let image = charactersImage[characters[section]] {
+            headerCell.characterImageView.image = UIImage(named : image)
+        } else {
+            headerCell.characterImageView.image = nil
+        }
+        return headerCell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 80.0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -124,8 +142,11 @@ class SoundTableViewController: UITableViewController, NSFetchedResultsControlle
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SoundTableViewCell
         
-        // Determine if we get the sound from search result or the original array
-        let sound = (searchController.isActive) ? searchResults[indexPath.row] : sounds[indexPath.row]
+        let character = characters[indexPath.section]
+        guard let values = sounds[character] else {
+              return cell
+        }
+        let sound = values[indexPath.row]
         
         // Configure the cell...
         cell.titleLabel.text = sound.title
@@ -137,9 +158,12 @@ class SoundTableViewController: UITableViewController, NSFetchedResultsControlle
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let sound = (searchController.isActive) ? searchResults[indexPath.row] : sounds[indexPath.row]
-        
-        
+        let character = characters[indexPath.section]
+        guard let values = sounds[character] else {
+            return
+        }
+        let sound = values[indexPath.row]
+    
         let cache = Shared.dataCache
         let url = URL(string: "\(SoundProvider.baseApiUrl)/\(sound.file!)")!
         
@@ -158,68 +182,6 @@ class SoundTableViewController: UITableViewController, NSFetchedResultsControlle
             } catch let error {
                 print(error.localizedDescription)
             }
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if searchController.isActive {
-            return false
-        } else {
-            return true
-        }
-    }
-    
-    // MARK: NSFetchedResultsControllerDelegate
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.beginUpdates()
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
-        switch type {
-        case .insert:
-            if let newIndexPath = newIndexPath {
-                tableView.insertRows(at: [newIndexPath], with: .fade)
-            }
-        case .delete:
-            if let indexPath = indexPath {
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
-        case .update:
-            if let indexPath = indexPath {
-                tableView.reloadRows(at: [indexPath], with: .fade)
-            }
-        default:
-            tableView.reloadData()
-        }
-        
-        if let fetchedObjects = controller.fetchedObjects {
-            sounds = fetchedObjects as! [SoundMO]
-        }
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.endUpdates()
-    }
-    
-    // MARK: - Search Controller
-    
-    func filterContent(for searchText: String) {
-        searchResults = sounds.filter({ (sound) -> Bool in
-            if let character = sound.character, let title = sound.title, let episode = sound.episode {
-                let isMatch = character.localizedCaseInsensitiveContains(searchText) || title.localizedCaseInsensitiveContains(searchText) || episode.localizedCaseInsensitiveContains(searchText)
-                return isMatch
-            }
-            
-            return false
-        })
-    }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        if let searchText = searchController.searchBar.text {
-            filterContent(for: searchText)
-            tableView.reloadData()
         }
     }
 }

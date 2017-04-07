@@ -20,6 +20,9 @@
 		EAB618A41E968BD400EC2EF6 /* SoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618A11E968BD400EC2EF6 /* SoundTableViewCell.swift */; };
 		EAB618A51E968BD400EC2EF6 /* SoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618A21E968BD400EC2EF6 /* SoundTableViewController.swift */; };
 		EAB618A91E96973400EC2EF6 /* SoundProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618A81E96973400EC2EF6 /* SoundProvider.swift */; };
+		EAB618AB1E969EB200EC2EF6 /* CharacterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618AA1E969EB200EC2EF6 /* CharacterTableViewController.swift */; };
+		EAB618AD1E96A39600EC2EF6 /* CharacterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618AC1E96A39600EC2EF6 /* CharacterTableViewCell.swift */; };
+		EAB618AF1E96A82600EC2EF6 /* Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618AE1E96A82600EC2EF6 /* Characters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		EAB618A11E968BD400EC2EF6 /* SoundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundTableViewCell.swift; path = controller/SoundTableViewCell.swift; sourceTree = "<group>"; };
 		EAB618A21E968BD400EC2EF6 /* SoundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundTableViewController.swift; path = controller/SoundTableViewController.swift; sourceTree = "<group>"; };
 		EAB618A81E96973400EC2EF6 /* SoundProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundProvider.swift; sourceTree = "<group>"; };
+		EAB618AA1E969EB200EC2EF6 /* CharacterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CharacterTableViewController.swift; path = controller/CharacterTableViewController.swift; sourceTree = "<group>"; };
+		EAB618AC1E96A39600EC2EF6 /* CharacterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CharacterTableViewCell.swift; path = controller/CharacterTableViewCell.swift; sourceTree = "<group>"; };
+		EAB618AE1E96A82600EC2EF6 /* Characters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Characters.swift; path = model/Characters.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +116,7 @@
 				EA10B3701E96670F00F6C3B8 /* Sound.swift */,
 				EAB618A81E96973400EC2EF6 /* SoundProvider.swift */,
 				EA122E211E96754400F88C33 /* Kaamelott.xcdatamodeld */,
+				EAB618AE1E96A82600EC2EF6 /* Characters.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -120,6 +127,8 @@
 				EAB618A01E968BD400EC2EF6 /* LoadingViewController.swift */,
 				EAB618A11E968BD400EC2EF6 /* SoundTableViewCell.swift */,
 				EAB618A21E968BD400EC2EF6 /* SoundTableViewController.swift */,
+				EAB618AA1E969EB200EC2EF6 /* CharacterTableViewController.swift */,
+				EAB618AC1E96A39600EC2EF6 /* CharacterTableViewCell.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -258,13 +267,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAB618A31E968BD400EC2EF6 /* LoadingViewController.swift in Sources */,
+				EAB618AB1E969EB200EC2EF6 /* CharacterTableViewController.swift in Sources */,
 				EA122E231E96754400F88C33 /* Kaamelott.xcdatamodeld in Sources */,
 				EAB6189B1E9681A900EC2EF6 /* SequenceExtension.swift in Sources */,
 				EAB618A91E96973400EC2EF6 /* SoundProvider.swift in Sources */,
 				EAB6189D1E9683A300EC2EF6 /* UIColorExtension.swift in Sources */,
 				EA10B3711E96670F00F6C3B8 /* Sound.swift in Sources */,
+				EAB618AF1E96A82600EC2EF6 /* Characters.swift in Sources */,
 				EA10B35E1E9666B800F6C3B8 /* AppDelegate.swift in Sources */,
 				EAB618A41E968BD400EC2EF6 /* SoundTableViewCell.swift in Sources */,
+				EAB618AD1E96A39600EC2EF6 /* CharacterTableViewCell.swift in Sources */,
 				EAB618A51E968BD400EC2EF6 /* SoundTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
