@@ -22,7 +22,6 @@ class Sound : EVObject {
 }
 
 extension SoundMO {
-    
     class func newInstance(character: String, episode: String, file: String, title: String, context: NSManagedObjectContext) -> SoundMO {
         let item = SoundMO(context: context)
         item.character = character
@@ -31,6 +30,4 @@ extension SoundMO {
         item.title = title
         return item
     }
-    
 }
-

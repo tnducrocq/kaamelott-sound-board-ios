@@ -22,13 +22,6 @@ class SoundTableViewController: UITableViewController, NSFetchedResultsControlle
         return UISearchController(searchResultsController: nil)
     }()
     
-    lazy var customRefreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(handleRefresh), for: UIControlEvents.valueChanged)
-        
-        return refreshControl
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,10 +31,9 @@ class SoundTableViewController: UITableViewController, NSFetchedResultsControlle
         // Enable Self Sizing Cells
         tableView.estimatedRowHeight = 80.0
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.addSubview(customRefreshControl)
         
         // Fetch data from data store
-        fetchData{
+        fetchData {
             self.tableView.reloadData()
         }
         
@@ -65,13 +57,6 @@ class SoundTableViewController: UITableViewController, NSFetchedResultsControlle
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-    }
-    
-    func handleRefresh() {
-        fetchData {
-            self.customRefreshControl.endRefreshing()
-            self.tableView.reloadData()
-        }
     }
     
     typealias fetchDataCompletionHandler = () -> Void

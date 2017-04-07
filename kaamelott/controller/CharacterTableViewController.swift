@@ -43,13 +43,6 @@ class CharacterTableViewController: UITableViewController, NSFetchedResultsContr
         return UISearchController(searchResultsController: nil)
     }()
     
-    lazy var customRefreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(handleRefresh), for: UIControlEvents.valueChanged)
-        
-        return refreshControl
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,10 +52,9 @@ class CharacterTableViewController: UITableViewController, NSFetchedResultsContr
         // Enable Self Sizing Cells
         tableView.estimatedRowHeight = 80.0
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.addSubview(customRefreshControl)
         
         // Fetch data from data store
-        fetchData{
+        fetchData {
             self.tableView.reloadData()
         }
         
@@ -77,13 +69,6 @@ class CharacterTableViewController: UITableViewController, NSFetchedResultsContr
         searchController.searchBar.placeholder = "Search sounds..."
         searchController.searchBar.tintColor = UIColor.white
         searchController.searchBar.barTintColor = UIColor.kaamelott
-    }
-    
-    func handleRefresh() {
-        fetchData {
-            self.customRefreshControl.endRefreshing()
-            self.tableView.reloadData()
-        }
     }
     
     typealias fetchDataCompletionHandler = () -> Void
@@ -153,7 +138,7 @@ class CharacterTableViewController: UITableViewController, NSFetchedResultsContr
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+   
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SoundTableViewCell
         

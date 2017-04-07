@@ -10,10 +10,19 @@ import UIKit
 
 class LoadingViewController : UIViewController {
     
+    @IBOutlet weak var progressLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        SoundProvider.sounds { (sounds, error) in
+        progressLabel.text = ""
+        activityIndicator.startAnimating()
+        
+        SoundProvider.sounds(soundsResponseHandler: { (sounds, error) in
             self.performSegue(withIdentifier: "main", sender: nil)
+        }) { (file, downloaded, count) in
+            self.progressLabel.text = "\(downloaded) / \(count)\n\(file) downloaded"
+            print("success for download \(file) \(downloaded) / \(count)")
         }
     }
     

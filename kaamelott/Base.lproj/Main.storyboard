@@ -21,9 +21,32 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="zPT-zc-fSt">
+                                <rect key="frame" x="167" y="313" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="m4u-Mp-jPy"/>
+                                    <constraint firstAttribute="height" constant="40" id="mOR-xO-Xda"/>
+                                </constraints>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Progression" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNR-2Y-Hc9">
+                                <rect key="frame" x="139.5" y="373" width="96" height="20.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="0.1803921568627451" green="0.75294117647058822" blue="0.70588235294117641" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="zPT-zc-fSt" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Yw4-kw-tzX"/>
+                            <constraint firstItem="xNR-2Y-Hc9" firstAttribute="top" secondItem="zPT-zc-fSt" secondAttribute="bottom" constant="20" id="haK-Q8-ABb"/>
+                            <constraint firstItem="zPT-zc-fSt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iLJ-Hi-Nsx"/>
+                            <constraint firstItem="xNR-2Y-Hc9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wcL-gN-duM"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="zPT-zc-fSt" id="WW5-av-FCj"/>
+                        <outlet property="progressLabel" destination="xNR-2Y-Hc9" id="lgg-aV-idr"/>
                         <segue destination="mFD-p8-h5C" kind="show" identifier="main" id="aFe-Vd-OqE"/>
                     </connections>
                 </viewController>

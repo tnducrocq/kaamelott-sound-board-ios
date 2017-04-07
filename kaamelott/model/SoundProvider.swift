@@ -13,7 +13,7 @@ import AlamofireJsonToObjects
 import Haneke
 
 typealias SoundsResponseHandler = (_ response : [Sound]?, _ error:Error?) -> ()
-
+typealias SoundsProgressHandler = (_ fileName: String, _ downloaded : Int, _ count : Int) -> ()
 class SoundProvider {
     
     static var baseApiUrl : String = "https://raw.githubusercontent.com/2ec0b4/kaamelott-soundboard/master/sounds"
@@ -39,16 +39,16 @@ class SoundProvider {
         }
     }
     
-    static func sounds(soundsResponseHandler: @escaping SoundsResponseHandler) {
+    static func sounds(soundsResponseHandler: @escaping SoundsResponseHandler, progressHandler: @escaping SoundsProgressHandler) {
         let url = "\(SoundProvider.baseApiUrl)/sounds.json"
         Alamofire.request(url, method: .get).responseArray { (response: DataResponse<[Sound]>) in
             if let sounds = response.result.value {
-                processSounds(sounds: sounds, soundsResponseHandler: soundsResponseHandler)
+                processSounds(sounds: sounds, soundsResponseHandler: soundsResponseHandler, progressHandler: progressHandler)
             }
         }
     }
     
-    private static func processSounds(sounds: [Sound], soundsResponseHandler: @escaping SoundsResponseHandler) {
+    private static func processSounds(sounds: [Sound], soundsResponseHandler: @escaping SoundsResponseHandler, progressHandler: @escaping SoundsProgressHandler) {
         let cache = Shared.dataCache
         var filesToDownload : Int = sounds.count
         guard let appDelegate = (UIApplication.shared.delegate as? AppDelegate), filesToDownload > 0 else {
@@ -66,7 +66,7 @@ class SoundProvider {
                 let url = URL(string: "\(SoundProvider.baseApiUrl)/\(sound.file)")!
                 cache.fetch(URL: url).onSuccess { data in
                     // Do something with data
-                    print("success for download \(sound.file) \(sounds.count - filesToDownload + 1) / \(sounds.count)")
+                    progressHandler(sound.file, sounds.count - filesToDownload + 1, sounds.count)
                     filesToDownload -= 1
                     if filesToDownload == 0 {
                         soundsResponseHandler(sounds, nil)
