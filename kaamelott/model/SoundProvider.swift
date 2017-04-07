@@ -18,7 +18,6 @@ class SoundProvider {
     
     static var baseApiUrl : String = "https://raw.githubusercontent.com/2ec0b4/kaamelott-soundboard/master/sounds"
     
-    
     typealias fetchDataCompletionHandler = ([SoundMO]) -> Void
     static func fetchData(context: NSManagedObjectContext, completion: @escaping fetchDataCompletionHandler) {
         DispatchQueue.global(qos: .background).async {
@@ -40,58 +39,41 @@ class SoundProvider {
         }
     }
     
-    typealias insertDataCompletionHandler = () -> Void
-    static func insertData(completion: insertDataCompletionHandler? = nil) {
-        DispatchQueue.global(qos: .background).async {
-            
-        }
-    }
-    
     static func sounds(soundsResponseHandler: @escaping SoundsResponseHandler) {
         let url = "\(SoundProvider.baseApiUrl)/sounds.json"
         Alamofire.request(url, method: .get).responseArray { (response: DataResponse<[Sound]>) in
             if let sounds = response.result.value {
-                
-                let cache = Shared.dataCache
-                var filesToDownload = sounds.count
-                if filesToDownload == 0 {
-                    soundsResponseHandler(response.result.value, response.result.error)
-                }
-                
-                if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
-                    
-                    fetchData(context: appDelegate.persistentContainer.viewContext, completion: { (existingSounds) in
-                        
-                        let dictionnary = existingSounds.toDictionary { $0.title! }
-                        for sound in sounds {
-                            if dictionnary.index(forKey: sound.title) == nil {
-                                let _ = sound.toSoundMO(context: appDelegate.persistentContainer.viewContext)
-                                
-                                let url = URL(string: "\(SoundProvider.baseApiUrl)/\(sound.file)")!
-                                cache.fetch(URL: url).onSuccess { data in
-                                    // Do something with data
-                                    print("success for download \(sound.file)")
-                                    filesToDownload -= 1
-                                    if filesToDownload == 0 {
-                                        soundsResponseHandler(response.result.value, response.result.error)
-                                    }
-                                }
-                            } else {
-                                filesToDownload -= 1
-                                if filesToDownload == 0 {
-                                    soundsResponseHandler(response.result.value, response.result.error)
-                                }
-                            }
-                        }
-                        
-                        appDelegate.saveContext()
-                        
-                        
-                    })
-                    
-                    
-                }
+                processSounds(sounds: sounds, soundsResponseHandler: soundsResponseHandler)
             }
         }
+    }
+    
+    private static func processSounds(sounds: [Sound], soundsResponseHandler: @escaping SoundsResponseHandler) {
+        let cache = Shared.dataCache
+        var filesToDownload : Int = sounds.count
+        guard let appDelegate = (UIApplication.shared.delegate as? AppDelegate), filesToDownload > 0 else {
+            soundsResponseHandler([], nil)
+            return
+        }
+        
+        let context = appDelegate.persistentContainer.newBackgroundContext()
+        fetchData(context: context, completion: { (existingSounds) in
+            let dictionnary = existingSounds.toDictionary { $0.title! }
+            for sound in sounds {
+                if dictionnary.index(forKey: sound.title) == nil {
+                    let _ = sound.toSoundMO(context: context)
+                }
+                let url = URL(string: "\(SoundProvider.baseApiUrl)/\(sound.file)")!
+                cache.fetch(URL: url).onSuccess { data in
+                    // Do something with data
+                    print("success for download \(sound.file) \(sounds.count - filesToDownload + 1) / \(sounds.count)")
+                    filesToDownload -= 1
+                    if filesToDownload == 0 {
+                        soundsResponseHandler(sounds, nil)
+                    }
+                }
+            }
+            appDelegate.saveContext(context)
+        })
     }
 }
