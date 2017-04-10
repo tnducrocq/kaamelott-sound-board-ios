@@ -19,8 +19,8 @@
 		EAB618A31E968BD400EC2EF6 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618A01E968BD400EC2EF6 /* LoadingViewController.swift */; };
 		EAB618A41E968BD400EC2EF6 /* SoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618A11E968BD400EC2EF6 /* SoundTableViewCell.swift */; };
 		EAB618A51E968BD400EC2EF6 /* SoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618A21E968BD400EC2EF6 /* SoundTableViewController.swift */; };
-		EAB618AB1E969EB200EC2EF6 /* CharacterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618AA1E969EB200EC2EF6 /* CharacterTableViewController.swift */; };
-		EAB618AD1E96A39600EC2EF6 /* CharacterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618AC1E96A39600EC2EF6 /* CharacterTableViewCell.swift */; };
+		EAB618AB1E969EB200EC2EF6 /* SectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618AA1E969EB200EC2EF6 /* SectionTableViewController.swift */; };
+		EAB618AD1E96A39600EC2EF6 /* SectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618AC1E96A39600EC2EF6 /* SectionTableViewCell.swift */; };
 		EAB618AF1E96A82600EC2EF6 /* Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618AE1E96A82600EC2EF6 /* Characters.swift */; };
 		EAB618B11E976C0E00EC2EF6 /* SoundProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618B01E976C0E00EC2EF6 /* SoundProvider.swift */; };
 /* End PBXBuildFile section */
@@ -42,8 +42,8 @@
 		EAB618A01E968BD400EC2EF6 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingViewController.swift; path = controller/LoadingViewController.swift; sourceTree = "<group>"; };
 		EAB618A11E968BD400EC2EF6 /* SoundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundTableViewCell.swift; path = controller/SoundTableViewCell.swift; sourceTree = "<group>"; };
 		EAB618A21E968BD400EC2EF6 /* SoundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundTableViewController.swift; path = controller/SoundTableViewController.swift; sourceTree = "<group>"; };
-		EAB618AA1E969EB200EC2EF6 /* CharacterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CharacterTableViewController.swift; path = controller/CharacterTableViewController.swift; sourceTree = "<group>"; };
-		EAB618AC1E96A39600EC2EF6 /* CharacterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CharacterTableViewCell.swift; path = controller/CharacterTableViewCell.swift; sourceTree = "<group>"; };
+		EAB618AA1E969EB200EC2EF6 /* SectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SectionTableViewController.swift; path = controller/SectionTableViewController.swift; sourceTree = "<group>"; };
+		EAB618AC1E96A39600EC2EF6 /* SectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SectionTableViewCell.swift; path = controller/SectionTableViewCell.swift; sourceTree = "<group>"; };
 		EAB618AE1E96A82600EC2EF6 /* Characters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Characters.swift; path = model/Characters.swift; sourceTree = "<group>"; };
 		EAB618B01E976C0E00EC2EF6 /* SoundProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundProvider.swift; path = model/SoundProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,8 +127,8 @@
 				EAB618A01E968BD400EC2EF6 /* LoadingViewController.swift */,
 				EAB618A21E968BD400EC2EF6 /* SoundTableViewController.swift */,
 				EAB618A11E968BD400EC2EF6 /* SoundTableViewCell.swift */,
-				EAB618AA1E969EB200EC2EF6 /* CharacterTableViewController.swift */,
-				EAB618AC1E96A39600EC2EF6 /* CharacterTableViewCell.swift */,
+				EAB618AA1E969EB200EC2EF6 /* SectionTableViewController.swift */,
+				EAB618AC1E96A39600EC2EF6 /* SectionTableViewCell.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -267,7 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAB618A31E968BD400EC2EF6 /* LoadingViewController.swift in Sources */,
-				EAB618AB1E969EB200EC2EF6 /* CharacterTableViewController.swift in Sources */,
+				EAB618AB1E969EB200EC2EF6 /* SectionTableViewController.swift in Sources */,
 				EA122E231E96754400F88C33 /* Kaamelott.xcdatamodeld in Sources */,
 				EAB6189B1E9681A900EC2EF6 /* SequenceExtension.swift in Sources */,
 				EAB6189D1E9683A300EC2EF6 /* UIColorExtension.swift in Sources */,
@@ -276,7 +276,7 @@
 				EAB618AF1E96A82600EC2EF6 /* Characters.swift in Sources */,
 				EA10B35E1E9666B800F6C3B8 /* AppDelegate.swift in Sources */,
 				EAB618A41E968BD400EC2EF6 /* SoundTableViewCell.swift in Sources */,
-				EAB618AD1E96A39600EC2EF6 /* CharacterTableViewCell.swift in Sources */,
+				EAB618AD1E96A39600EC2EF6 /* SectionTableViewCell.swift in Sources */,
 				EAB618A51E968BD400EC2EF6 /* SoundTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,6 +401,7 @@
 			baseConfigurationReference = A91BCB9AB62AF6D95F06575D /* Pods-kaamelott.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 8FH9PSF7AS;
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				INFOPLIST_FILE = kaamelott/Info.plist;
@@ -408,6 +409,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hubmobile.kaamelott;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -417,6 +420,7 @@
 			baseConfigurationReference = 53E0EF16A8304AE053B2B8C8 /* Pods-kaamelott.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 8FH9PSF7AS;
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				INFOPLIST_FILE = kaamelott/Info.plist;
@@ -424,6 +428,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hubmobile.kaamelott;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

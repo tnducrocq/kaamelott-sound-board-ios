@@ -1,5 +1,5 @@
 //
-//  CharacterViewCell.swift
+//  SectionTableViewCell.swift
 //  kaamelott
 //
 //  Created by Tony Ducrocq on 06/04/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CharacterTableViewCell: UITableViewCell {
+class SectionTableViewCell: UITableViewCell {
     
     @IBOutlet var characterLabel: UILabel!
     @IBOutlet var characterImageView: UIImageView!

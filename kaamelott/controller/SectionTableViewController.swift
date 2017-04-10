@@ -11,28 +11,28 @@ import CoreData
 import AVFoundation
 import Haneke
 
-class CharacterTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchResultsUpdating {
+class SectionTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchResultsUpdating {
     
     var player: AVAudioPlayer?
     var fetchResultController: NSFetchedResultsController<SoundMO>!
     
-    var characters : [String] = []
-    var searchCharacters : [String] = []
-    var displayedCharacters : [String] {
+    var sections : [String] = []
+    var searchSections : [String] = []
+    var displayedSections : [String] {
         get {
             if searchController.isActive {
-                return searchCharacters
+                return searchSections
             } else {
-                return characters
+                return sections
             }
         }
     }
     var sounds : [String : [SoundMO]] = [:]
-    var searchResults : [String : [SoundMO]] = [:]
+    var searchSounds : [String : [SoundMO]] = [:]
     var displayedSounds : [String : [SoundMO]] {
         get {
             if searchController.isActive {
-                return searchResults
+                return searchSounds
             } else {
                 return sounds
             }
@@ -73,59 +73,28 @@ class CharacterTableViewController: UITableViewController, NSFetchedResultsContr
     
     typealias fetchDataCompletionHandler = () -> Void
     func fetchData(completion: fetchDataCompletionHandler? = nil) {
-        DispatchQueue.global(qos: .background).async {
-            let fetchRequest: NSFetchRequest<SoundMO> = SoundMO.fetchRequest()
-            let sortDescriptor = NSSortDescriptor(key: "character", ascending: true)
-            fetchRequest.sortDescriptors = [sortDescriptor]
-            
-            if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
-                let context = appDelegate.persistentContainer.viewContext
-                self.fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-                do {
-                    try self.fetchResultController.performFetch()
-                    if let fetchedObjects = self.fetchResultController.fetchedObjects {
-                        
-                        self.characters = []
-                        self.sounds = [:]
-                        for object in fetchedObjects {
-                            if self.sounds.index(forKey: object.character!) == nil {
-                                self.characters.append(object.character!)
-                                self.sounds[object.character!] = [object]
-                            } else {
-                                self.sounds[object.character!]?.append(object)
-                            }
-                        }
-                        
-                    }
-                } catch {
-                    print(error)
-                }
-            }
-            DispatchQueue.main.async {
-                completion?()
-            }
-        }
+        preconditionFailure("must be override")
     }
     
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return displayedCharacters.count
+        return displayedSections.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let character = displayedCharacters[section]
-        if let values = displayedSounds[character] {
+        let key = displayedSections[section]
+        if let values = displayedSounds[key] {
             return values.count
         }
         return 0
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let  headerCell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell") as! CharacterTableViewCell
+        let  headerCell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell") as! SectionTableViewCell
         headerCell.backgroundColor = UIColor.kaamelott
-        headerCell.characterLabel.text = displayedCharacters[section]
-        if let image = charactersImage[displayedCharacters[section]] {
+        headerCell.characterLabel.text = displayedSections[section]
+        if let image = charactersImage[displayedSections[section]] {
             headerCell.characterImageView.image = UIImage(named : image)
         } else {
             headerCell.characterImageView.image = nil
@@ -138,32 +107,31 @@ class CharacterTableViewController: UITableViewController, NSFetchedResultsContr
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-   
+        
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SoundTableViewCell
         
-        let character = displayedCharacters[indexPath.section]
-        guard let values = displayedSounds[character] else {
-              return cell
+        let key = displayedSections[indexPath.section]
+        guard let values = displayedSounds[key] else {
+            return cell
         }
         let sound = values[indexPath.row]
         
         // Configure the cell...
         cell.titleLabel.text = sound.title
         cell.characterLabel.text = sound.character
-        //cell.characterImageView.image = UIImage(named: sound.character!.lowercased())
         cell.episodeLabel.text = sound.episode
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let character = displayedCharacters[indexPath.section]
-        guard let values = displayedSounds[character] else {
+        let key = displayedSections[indexPath.section]
+        guard let values = displayedSounds[key] else {
             return
         }
         let sound = values[indexPath.row]
-    
+        
         let cache = Shared.dataCache
         let url = URL(string: "\(SoundProvider.baseApiUrl)/\(sound.file!)")!
         
@@ -186,14 +154,13 @@ class CharacterTableViewController: UITableViewController, NSFetchedResultsContr
     }
     
     // MARK: - Search Controller
-    
     func filterContent(for searchText: String) {
-        searchResults = [:]
-        searchCharacters = []
-        for character in characters {
-            if sounds.index(forKey: character) != nil {
+        searchSounds   = [:]
+        searchSections = []
+        for section in sections {
+            if sounds.index(forKey: section) != nil {
                 var values : [SoundMO] = []
-                for sound in sounds[character]! {
+                for sound in sounds[section]! {
                     if let character = sound.character, let title = sound.title, let episode = sound.episode {
                         if character.localizedCaseInsensitiveContains(searchText) || title.localizedCaseInsensitiveContains(searchText) || episode.localizedCaseInsensitiveContains(searchText) {
                             values.append(sound)
@@ -201,8 +168,8 @@ class CharacterTableViewController: UITableViewController, NSFetchedResultsContr
                     }
                 }
                 if !values.isEmpty {
-                    searchResults[character] = values
-                    searchCharacters.append(character)
+                    searchSounds[section] = values
+                    searchSections.append(section)
                 }
             }
         }
@@ -215,3 +182,59 @@ class CharacterTableViewController: UITableViewController, NSFetchedResultsContr
         }
     }
 }
+
+class CharacterTableViewController: SectionTableViewController {
+    
+    override func fetchData(completion: fetchDataCompletionHandler? = nil) {
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+            let context = appDelegate.persistentContainer.viewContext
+            SoundProvider.fetchData(sortKey: "character", context: context, completion: { (sounds, error) in
+                if let fetchedObjects = sounds {
+                    self.sections = []
+                    self.sounds = [:]
+                    for object in fetchedObjects {
+                        let key = object.character!
+                        if self.sounds.index(forKey: key) == nil {
+                            self.sections.append(key)
+                            self.sounds[key] = [object]
+                        } else {
+                            self.sounds[key]?.append(object)
+                        }
+                    }
+                } else if let error = error {
+                    print(error)
+                }
+                completion?()
+            })
+        }
+    }
+}
+
+class EpisodeTableViewController: SectionTableViewController {
+    
+    override func fetchData(completion: fetchDataCompletionHandler? = nil) {
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+            let context = appDelegate.persistentContainer.viewContext
+            SoundProvider.fetchData(sortKey: "episode", context: context, completion: { (sounds, error) in
+                if let fetchedObjects = sounds {
+                    self.sections = []
+                    self.sounds = [:]
+                    for object in fetchedObjects {
+                        let key = object.episode!
+                        if self.sounds.index(forKey: key) == nil {
+                            self.sections.append(key)
+                            self.sounds[key] = [object]
+                        } else {
+                            self.sounds[key]?.append(object)
+                        }
+                    }
+                } else if let error = error {
+                    print(error)
+                }
+                completion?()
+            })
+        }
+    }
+}
+
+
