@@ -9,20 +9,20 @@
 import Foundation
 import CoreData
 import Alamofire
-import AlamofireJsonToObjects
+//import AlamofireJsonToObjects
 import Haneke
 
-typealias SoundsResponseHandler = (_ response : [Sound]?, _ error:Error?) -> ()
+typealias SoundsResponseHandler = (_ response : [SoundMO]?, _ error:Error?) -> ()
 typealias SoundsProgressHandler = (_ fileName: String, _ downloaded : Int, _ count : Int) -> ()
 class SoundProvider {
     
     static var baseApiUrl : String = "https://raw.githubusercontent.com/2ec0b4/kaamelott-soundboard/master/sounds"
     
-    typealias fetchDataCompletionHandler = ([SoundMO]) -> Void
-    static func fetchData(context: NSManagedObjectContext, completion: @escaping fetchDataCompletionHandler) {
+    typealias fetchDataCompletionHandler = (_ sounds: [SoundMO]?, _ error:Error?) -> Void
+    static func fetchData(sortKey : String = "title", context: NSManagedObjectContext, completion: @escaping fetchDataCompletionHandler) {
         DispatchQueue.global(qos: .background).async {
             let fetchRequest: NSFetchRequest<SoundMO> = SoundMO.fetchRequest()
-            let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+            let sortDescriptor = NSSortDescriptor(key: sortKey, ascending: true)
             fetchRequest.sortDescriptors = [sortDescriptor]
             
             let fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
@@ -30,50 +30,109 @@ class SoundProvider {
                 try fetchResultController.performFetch()
                 if let fetchedObjects = fetchResultController.fetchedObjects {
                     DispatchQueue.main.async {
-                        completion(fetchedObjects)
+                        completion(fetchedObjects, nil)
                     }
                 }
             } catch {
-                print(error)
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
             }
         }
     }
     
     static func sounds(soundsResponseHandler: @escaping SoundsResponseHandler, progressHandler: @escaping SoundsProgressHandler) {
         let url = "\(SoundProvider.baseApiUrl)/sounds.json"
-        Alamofire.request(url, method: .get).responseArray { (response: DataResponse<[Sound]>) in
-            if let sounds = response.result.value {
-                processSounds(sounds: sounds, soundsResponseHandler: soundsResponseHandler, progressHandler: progressHandler)
+        Alamofire.request(url, method: .get).responseJSON { (response) in
+            switch response.result {
+            case .success(let data):
+                let json = data as! [Any]
+                DispatchQueue.global(qos: .background).async {
+                    sounds(json: json, soundsResponseHandler: { (sounds, error) in
+                        DispatchQueue.main.async {
+                            soundsResponseHandler(sounds, error)
+                        }
+                    }, progressHandler: { (file, downloaded, count) in
+                        DispatchQueue.main.async {
+                            progressHandler(file, downloaded, count)
+                        }
+                    })
+                }
+                
+            case .failure(let error):
+                soundsResponseHandler(nil, error)
             }
         }
     }
     
-    private static func processSounds(sounds: [Sound], soundsResponseHandler: @escaping SoundsResponseHandler, progressHandler: @escaping SoundsProgressHandler) {
-        let cache = Shared.dataCache
-        var filesToDownload : Int = sounds.count
-        guard let appDelegate = (UIApplication.shared.delegate as? AppDelegate), filesToDownload > 0 else {
+    private static func sounds(json: [Any], soundsResponseHandler: @escaping SoundsResponseHandler, progressHandler: @escaping SoundsProgressHandler) {
+        guard let appDelegate = (UIApplication.shared.delegate as? AppDelegate) else {
             soundsResponseHandler([], nil)
             return
         }
-        
         let context = appDelegate.persistentContainer.newBackgroundContext()
-        fetchData(context: context, completion: { (existingSounds) in
-            let dictionnary = existingSounds.toDictionary { $0.title! }
+        switch parseSounds(json: json, context: context) {
+        case .success(let sounds):
+            let cache = Shared.dataCache
+            var filesToDownload : Int = sounds.count
             for sound in sounds {
-                if dictionnary.index(forKey: sound.title) == nil {
-                    let _ = sound.toSoundMO(context: context)
-                }
-                let url = URL(string: "\(SoundProvider.baseApiUrl)/\(sound.file)")!
+                let file = sound.file!
+                let url : URL = URL(string: "\(SoundProvider.baseApiUrl)/\(file)")!
                 cache.fetch(URL: url).onSuccess { data in
-                    // Do something with data
-                    progressHandler(sound.file, sounds.count - filesToDownload + 1, sounds.count)
+                    progressHandler(file, sounds.count - filesToDownload + 1, sounds.count)
                     filesToDownload -= 1
                     if filesToDownload == 0 {
                         soundsResponseHandler(sounds, nil)
                     }
-                }
+                }.onFailure({ (error) in
+                    filesToDownload -= 1
+                    if filesToDownload == 0 {
+                        soundsResponseHandler(sounds, nil)
+                    }
+                })
             }
-            appDelegate.saveContext(context)
-        })
+        case .failure(let error):
+            soundsResponseHandler(nil, error)
+        }
+        appDelegate.saveContext(context)
     }
+    
+    private static func parseSounds(json: [Any], context: NSManagedObjectContext) -> Result<[SoundMO]> {
+        var sounds : [SoundMO] = []
+        for element in json {
+            if let obj = element as? [String:String] {
+                let fetchRequest: NSFetchRequest<SoundMO> = SoundMO.fetchRequest()
+                fetchRequest.predicate = NSPredicate(format: "title == %@", obj["title"]!)
+                fetchRequest.sortDescriptors = []
+                let fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+                do {
+                    try fetchResultController.performFetch()
+                    if let fetchedObjects = fetchResultController.fetchedObjects, !fetchedObjects.isEmpty {
+                        sounds.append(fetchedObjects.first!)
+                    } else {
+                        let sound = SoundMO(context: context)
+                        sound.title = obj["title"]!
+                        sound.character = obj["character"]!
+                        sound.file = obj["file"]!
+                        sound.episode = obj["episode"]!
+                        sounds.append(sound)
+                    }
+                } catch {
+                    return Result.failure(error)
+                }
+            } else {
+                return Result.failure(JSONParsingError(reason: .invalidDictonnary))
+            }
+        }
+        
+        return Result.success(sounds)
+    }
+}
+
+struct JSONParsingError: Error {
+    enum JSONParsingReason {
+        case invalidDictonnary
+        case invalidArray
+    }
+    let reason: JSONParsingReason
 }

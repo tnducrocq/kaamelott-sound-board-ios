@@ -61,33 +61,17 @@ class SoundTableViewController: UITableViewController, NSFetchedResultsControlle
     
     typealias fetchDataCompletionHandler = () -> Void
     func fetchData(completion: fetchDataCompletionHandler? = nil) {
-        DispatchQueue.global(qos: .background).async {
-            let fetchRequest: NSFetchRequest<SoundMO> = SoundMO.fetchRequest()
-            let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
-            fetchRequest.sortDescriptors = [sortDescriptor]
-            
-            if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
-                let context = appDelegate.persistentContainer.viewContext
-                self.fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-                do {
-                    try self.fetchResultController.performFetch()
-                    if let fetchedObjects = self.fetchResultController.fetchedObjects {
-                        self.sounds = fetchedObjects
-                        
-                    }
-                } catch {
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+            let context = appDelegate.persistentContainer.viewContext
+            SoundProvider.fetchData(context: context, completion: { (sounds, error) in
+                if let sounds = sounds {
+                    self.sounds = sounds
+                } else if let error = error {
                     print(error)
                 }
-            }
-            DispatchQueue.main.async {
                 completion?()
-            }
+            })
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - Table view data source
