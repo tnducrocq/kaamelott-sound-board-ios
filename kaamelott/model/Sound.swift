@@ -7,19 +7,7 @@
 //
 
 import Foundation
-import EVReflection
 import CoreData
-
-class Sound : EVObject {
-    var character : String = ""
-    var episode : String = ""
-    var file : String = ""
-    var title : String = ""
-    
-    func toSoundMO(context: NSManagedObjectContext) -> SoundMO {
-        return SoundMO.newInstance(character: character, episode: episode, file: file, title: title, context: context)
-    }
-}
 
 extension SoundMO {
     class func newInstance(character: String, episode: String, file: String, title: String, context: NSManagedObjectContext) -> SoundMO {

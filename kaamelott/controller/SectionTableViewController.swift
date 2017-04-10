@@ -94,11 +94,7 @@ class SectionTableViewController: UITableViewController, NSFetchedResultsControl
         let  headerCell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell") as! SectionTableViewCell
         headerCell.backgroundColor = UIColor.kaamelott
         headerCell.characterLabel.text = displayedSections[section]
-        if let image = charactersImage[displayedSections[section]] {
-            headerCell.characterImageView.image = UIImage(named : image)
-        } else {
-            headerCell.characterImageView.image = nil
-        }
+        headerCell.characterImageView.image = nil
         return headerCell
     }
     

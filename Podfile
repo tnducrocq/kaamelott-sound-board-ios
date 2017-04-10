@@ -9,14 +9,7 @@ target 'kaamelott' do
 
   # Pods for kaamelott
   pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => '4.0.0'
-  pod 'EVReflection', :git => 'https://github.com/evermeer/EVReflection.git', :branch => 'Swift3.0'
-  pod 'AlamofireJsonToObjects', :git => 'https://github.com/evermeer/AlamofireJsonToObjects.git', :branch => 'Swift3'
   pod 'HanekeSwift', :git => 'https://github.com/Haneke/HanekeSwift.git', :branch => 'feature/swift-3'
-
-  #pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :tag => '4.4.0'
-  #pod 'EVReflection', :git => 'https://github.com/evermeer/EVReflection.git', :branch => 'Swift3.0'
-  #pod 'AlamofireJsonToObjects', :git => 'https://github.com/evermeer/AlamofireJsonToObjects.git', :branch => 'Swift3'
-  #pod 'HanekeSwift', :git => 'https://github.com/Haneke/HanekeSwift.git', :branch => 'feature/swift-3'
 
 end
 
