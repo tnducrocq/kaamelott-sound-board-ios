@@ -2,9 +2,12 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Sound" representedClassName="SoundMO" syncable="YES" codeGenerationType="class">
         <attribute name="character" attributeType="String" minValueString="1" syncable="YES"/>
+        <attribute name="characterClean" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="episode" attributeType="String" minValueString="1" syncable="YES"/>
+        <attribute name="episodeClean" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="file" attributeType="String" minValueString="1" syncable="YES"/>
         <attribute name="title" attributeType="String" minValueString="1" syncable="YES"/>
+        <attribute name="titleClean" optional="YES" attributeType="String" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="title"/>
@@ -12,6 +15,6 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Sound" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="Sound" positionX="-63" positionY="-18" width="128" height="150"/>
     </elements>
 </model>

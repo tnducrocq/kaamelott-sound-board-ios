@@ -22,7 +22,7 @@ class LoadingViewController : UIViewController {
             self.performSegue(withIdentifier: "main", sender: nil)
         }) { (file, downloaded, count) in
             self.progressLabel.text = "\(downloaded) / \(count)\n\(file) downloaded"
-            print("success for download \(file) \(downloaded) / \(count)")
+            print("\(file) \(downloaded) / \(count)")
         }
     }
     

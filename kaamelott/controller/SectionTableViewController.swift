@@ -184,12 +184,12 @@ class CharacterTableViewController: SectionTableViewController {
     override func fetchData(completion: fetchDataCompletionHandler? = nil) {
         if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
             let context = appDelegate.persistentContainer.viewContext
-            SoundProvider.fetchData(sortKey: "character", context: context, completion: { (sounds, error) in
+            SoundProvider.fetchData(sortKey: "characterClean", context: context, completion: { (sounds, error) in
                 if let fetchedObjects = sounds {
                     self.sections = []
                     self.sounds = [:]
                     for object in fetchedObjects {
-                        let key = object.character!
+                        let key = object.characterClean!
                         if self.sounds.index(forKey: key) == nil {
                             self.sections.append(key)
                             self.sounds[key] = [object]
@@ -232,5 +232,3 @@ class EpisodeTableViewController: SectionTableViewController {
         }
     }
 }
-
-

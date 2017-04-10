@@ -13,9 +13,15 @@ extension SoundMO {
     class func newInstance(character: String, episode: String, file: String, title: String, context: NSManagedObjectContext) -> SoundMO {
         let item = SoundMO(context: context)
         item.character = character
+        item.characterClean = character.folding(options: .diacriticInsensitive, locale: .current)
+        
         item.episode = episode
-        item.file = file
+        item.episodeClean = episode.folding(options: .diacriticInsensitive, locale: .current)
+        
         item.title = title
+        item.titleClean = title.folding(options: .diacriticInsensitive, locale: .current)
+        
+        item.file = file
         return item
     }
 }

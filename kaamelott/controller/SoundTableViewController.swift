@@ -63,7 +63,7 @@ class SoundTableViewController: UITableViewController, NSFetchedResultsControlle
     func fetchData(completion: fetchDataCompletionHandler? = nil) {
         if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
             let context = appDelegate.persistentContainer.viewContext
-            SoundProvider.fetchData(context: context, completion: { (sounds, error) in
+            SoundProvider.fetchData(sortKey: "titleClean", context: context, completion: { (sounds, error) in
                 if let sounds = sounds {
                     self.sounds = sounds
                 } else if let error = error {
@@ -99,7 +99,6 @@ class SoundTableViewController: UITableViewController, NSFetchedResultsControlle
         // Configure the cell...
         cell.titleLabel.text = sound.title
         cell.characterLabel.text = sound.character
-        //cell.characterImageView.image = UIImage(named: sound.character!.lowercased())
         cell.episodeLabel.text = sound.episode
         
         return cell
@@ -137,41 +136,7 @@ class SoundTableViewController: UITableViewController, NSFetchedResultsControlle
             return true
         }
     }
-    
-    // MARK: NSFetchedResultsControllerDelegate
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.beginUpdates()
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
-        switch type {
-        case .insert:
-            if let newIndexPath = newIndexPath {
-                tableView.insertRows(at: [newIndexPath], with: .fade)
-            }
-        case .delete:
-            if let indexPath = indexPath {
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
-        case .update:
-            if let indexPath = indexPath {
-                tableView.reloadRows(at: [indexPath], with: .fade)
-            }
-        default:
-            tableView.reloadData()
-        }
-        
-        if let fetchedObjects = controller.fetchedObjects {
-            sounds = fetchedObjects as! [SoundMO]
-        }
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.endUpdates()
-    }
-    
     // MARK: - Search Controller
     
     func filterContent(for searchText: String) {

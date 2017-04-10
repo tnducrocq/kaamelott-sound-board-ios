@@ -18,7 +18,7 @@ class SoundProvider {
     static var baseApiUrl : String = "https://raw.githubusercontent.com/2ec0b4/kaamelott-soundboard/master/sounds"
     
     typealias fetchDataCompletionHandler = (_ sounds: [SoundMO]?, _ error:Error?) -> Void
-    static func fetchData(sortKey : String = "title", context: NSManagedObjectContext, completion: @escaping fetchDataCompletionHandler) {
+    static func fetchData(sortKey : String = "titleClean", context: NSManagedObjectContext, completion: @escaping fetchDataCompletionHandler) {
         DispatchQueue.global(qos: .background).async {
             let fetchRequest: NSFetchRequest<SoundMO> = SoundMO.fetchRequest()
             let sortDescriptor = NSSortDescriptor(key: sortKey, ascending: true)
@@ -109,11 +109,7 @@ class SoundProvider {
                     if let fetchedObjects = fetchResultController.fetchedObjects, !fetchedObjects.isEmpty {
                         sounds.append(fetchedObjects.first!)
                     } else {
-                        let sound = SoundMO(context: context)
-                        sound.title = obj["title"]!
-                        sound.character = obj["character"]!
-                        sound.file = obj["file"]!
-                        sound.episode = obj["episode"]!
+                        let sound = SoundMO.newInstance(character: obj["character"]!, episode: obj["episode"]!, file: obj["file"]!, title: obj["title"]!, context: context)
                         sounds.append(sound)
                     }
                 } catch {
