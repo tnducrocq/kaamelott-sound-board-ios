@@ -184,7 +184,7 @@ class CharacterTableViewController: SectionTableViewController {
     override func fetchData(completion: fetchDataCompletionHandler? = nil) {
         if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
             let context = appDelegate.persistentContainer.viewContext
-            SoundProvider.fetchData(sortKey: "characterClean", context: context, completion: { (sounds, error) in
+            SoundProvider.fetchData(sortKey: "titleClean", context: context, completion: { (sounds, error) in
                 if let fetchedObjects = sounds {
                     self.sections = []
                     self.sounds = [:]
@@ -197,6 +197,9 @@ class CharacterTableViewController: SectionTableViewController {
                             self.sounds[key]?.append(object)
                         }
                     }
+                    self.sections.sort(by: { (s1, s2) -> Bool in
+                        return s1.folding(options: .diacriticInsensitive, locale: .current) < s2.folding(options: .diacriticInsensitive, locale: .current)
+                    })
                 } else if let error = error {
                     print(error)
                 }
@@ -211,7 +214,7 @@ class EpisodeTableViewController: SectionTableViewController {
     override func fetchData(completion: fetchDataCompletionHandler? = nil) {
         if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
             let context = appDelegate.persistentContainer.viewContext
-            SoundProvider.fetchData(sortKey: "episode", context: context, completion: { (sounds, error) in
+            SoundProvider.fetchData(sortKey: "titleClean", context: context, completion: { (sounds, error) in
                 if let fetchedObjects = sounds {
                     self.sections = []
                     self.sounds = [:]
@@ -224,6 +227,9 @@ class EpisodeTableViewController: SectionTableViewController {
                             self.sounds[key]?.append(object)
                         }
                     }
+                    self.sections.sort(by: { (s1, s2) -> Bool in
+                        return s1.folding(options: .diacriticInsensitive, locale: .current) < s2.folding(options: .diacriticInsensitive, locale: .current)
+                    })
                 } else if let error = error {
                     print(error)
                 }
