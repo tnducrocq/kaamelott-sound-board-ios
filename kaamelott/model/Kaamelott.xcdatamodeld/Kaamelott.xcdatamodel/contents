@@ -10,7 +10,7 @@
         <attribute name="titleClean" optional="YES" attributeType="String" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
-                <constraint value="title"/>
+                <constraint value="file"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>

@@ -100,6 +100,7 @@ class SoundTableViewController: UITableViewController, NSFetchedResultsControlle
         cell.titleLabel.text = sound.title
         cell.characterLabel.text = sound.character
         cell.episodeLabel.text = sound.episode
+        cell.indexLabel.text = "\(indexPath.row + 1)"
         
         return cell
     }

@@ -22,6 +22,8 @@
 		EAB618AB1E969EB200EC2EF6 /* SectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618AA1E969EB200EC2EF6 /* SectionTableViewController.swift */; };
 		EAB618AD1E96A39600EC2EF6 /* SectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618AC1E96A39600EC2EF6 /* SectionTableViewCell.swift */; };
 		EAB618B11E976C0E00EC2EF6 /* SoundProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB618B01E976C0E00EC2EF6 /* SoundProvider.swift */; };
+		EAEC70BB1E9CDBFD00117AF0 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEC70BA1E9CDBFD00117AF0 /* ContactViewController.swift */; };
+		EAEC70C41E9CE1A900117AF0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = EAEC70BE1E9CDDF900117AF0 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		EAB618AA1E969EB200EC2EF6 /* SectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SectionTableViewController.swift; path = controller/SectionTableViewController.swift; sourceTree = "<group>"; };
 		EAB618AC1E96A39600EC2EF6 /* SectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SectionTableViewCell.swift; path = controller/SectionTableViewCell.swift; sourceTree = "<group>"; };
 		EAB618B01E976C0E00EC2EF6 /* SoundProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundProvider.swift; path = model/SoundProvider.swift; sourceTree = "<group>"; };
+		EAEC70BA1E9CDBFD00117AF0 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactViewController.swift; path = controller/ContactViewController.swift; sourceTree = "<group>"; };
+		EAEC70BE1E9CDDF900117AF0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = model/README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				EA122E211E96754400F88C33 /* Kaamelott.xcdatamodeld */,
+				EAEC70BE1E9CDDF900117AF0 /* README.md */,
 				EA10B3701E96670F00F6C3B8 /* Sound.swift */,
 				EAB618B01E976C0E00EC2EF6 /* SoundProvider.swift */,
 			);
@@ -126,6 +131,7 @@
 				EAB618A11E968BD400EC2EF6 /* SoundTableViewCell.swift */,
 				EAB618AA1E969EB200EC2EF6 /* SectionTableViewController.swift */,
 				EAB618AC1E96A39600EC2EF6 /* SectionTableViewCell.swift */,
+				EAEC70BA1E9CDBFD00117AF0 /* ContactViewController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -202,6 +208,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAEC70C41E9CE1A900117AF0 /* README.md in Resources */,
 				EA10B3681E9666B800F6C3B8 /* LaunchScreen.storyboard in Resources */,
 				EA10B3651E9666B800F6C3B8 /* Assets.xcassets in Resources */,
 				EA10B3631E9666B800F6C3B8 /* Main.storyboard in Resources */,
@@ -265,6 +272,7 @@
 			files = (
 				EAB618A31E968BD400EC2EF6 /* LoadingViewController.swift in Sources */,
 				EAB618AB1E969EB200EC2EF6 /* SectionTableViewController.swift in Sources */,
+				EAEC70BB1E9CDBFD00117AF0 /* ContactViewController.swift in Sources */,
 				EA122E231E96754400F88C33 /* Kaamelott.xcdatamodeld in Sources */,
 				EAB6189B1E9681A900EC2EF6 /* SequenceExtension.swift in Sources */,
 				EAB6189D1E9683A300EC2EF6 /* UIColorExtension.swift in Sources */,

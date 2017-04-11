@@ -10,6 +10,7 @@ target 'kaamelott' do
   # Pods for kaamelott
   pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => '4.0.0'
   pod 'HanekeSwift', :git => 'https://github.com/Haneke/HanekeSwift.git', :branch => 'feature/swift-3'
+  pod 'SwiftyMarkdown', :git => 'https://github.com/SimonFairbairn/SwiftyMarkdown', :branch => 'swift3'
 
 end
 

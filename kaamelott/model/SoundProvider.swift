@@ -70,7 +70,7 @@ class SoundProvider {
             return
         }
         let context = appDelegate.persistentContainer.newBackgroundContext()
-        switch parseSounds(json: json, context: context) {
+        switch saveSounds(json: json, context: context) {
         case .success(let sounds):
             let cache = Shared.dataCache
             var filesToDownload : Int = sounds.count
@@ -96,31 +96,49 @@ class SoundProvider {
         appDelegate.saveContext(context)
     }
     
-    private static func parseSounds(json: [Any], context: NSManagedObjectContext) -> Result<[SoundMO]> {
-        var sounds : [SoundMO] = []
-        for element in json {
-            if let obj = element as? [String:String] {
-                let fetchRequest: NSFetchRequest<SoundMO> = SoundMO.fetchRequest()
-                fetchRequest.predicate = NSPredicate(format: "title == %@", obj["title"]!)
-                fetchRequest.sortDescriptors = []
-                let fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-                do {
-                    try fetchResultController.performFetch()
-                    if let fetchedObjects = fetchResultController.fetchedObjects, !fetchedObjects.isEmpty {
-                        sounds.append(fetchedObjects.first!)
-                    } else {
-                        let sound = SoundMO.newInstance(character: obj["character"]!, episode: obj["episode"]!, file: obj["file"]!, title: obj["title"]!, context: context)
-                        sounds.append(sound)
-                    }
-                } catch {
-                    return Result.failure(error)
-                }
-            } else {
-                return Result.failure(JSONParsingError(reason: .invalidDictonnary))
-            }
-        }
+    private static func saveSounds(json: [Any], context: NSManagedObjectContext) -> Result<[SoundMO]> {
         
-        return Result.success(sounds)
+        var results : [SoundMO] = []
+        
+        let fetchRequest: NSFetchRequest<SoundMO> = SoundMO.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "file", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+
+        let fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        do {
+            try fetchResultController.performFetch()
+            if let fetchedObjects = fetchResultController.fetchedObjects {
+                var dictionnaire = fetchedObjects.toDictionary(with: { (sound) -> String in
+                    return sound.file!
+                })
+                for element in json {
+                    if let obj = element as? [String:String] {
+                        if let sound = dictionnaire[obj["file"]!]  {
+                            //let sound = fetchedObjects.first!
+                            sound.character = obj["character"]!
+                            sound.episode   = obj["episode"]!
+                            sound.file      = obj["file"]!
+                            sound.title     = obj["title"]!
+                            results.append(sound)
+                            dictionnaire.removeValue(forKey: obj["file"]!)
+                        } else {
+                            let sound = SoundMO.newInstance(character: obj["character"]!, episode: obj["episode"]!, file: obj["file"]!, title: obj["title"]!, context: context)
+                            results.append(sound)
+                        }
+                    } else {
+                        return Result.failure(JSONParsingError(reason: .invalidDictonnary))
+                    }
+                }
+                
+                // remove older value in sounds.json
+                for (_, sound) in dictionnaire {
+                    context.delete(sound)
+                }
+            }
+        } catch {
+            return Result.failure(error)
+        }
+        return Result.success(results)
     }
 }
 

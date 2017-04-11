@@ -13,6 +13,7 @@ class SoundTableViewCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var characterLabel: UILabel!
     @IBOutlet var episodeLabel: UILabel!
+    @IBOutlet var indexLabel: UILabel!
     @IBOutlet var characterImageView: UIImageView!
 
 }
