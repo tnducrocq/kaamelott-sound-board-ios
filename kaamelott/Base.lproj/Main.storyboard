@@ -49,12 +49,12 @@
                     <connections>
                         <outlet property="activityIndicator" destination="zPT-zc-fSt" id="WW5-av-FCj"/>
                         <outlet property="progressLabel" destination="xNR-2Y-Hc9" id="lgg-aV-idr"/>
-                        <segue destination="2mb-kq-wf2" kind="show" identifier="main" id="y8O-6m-B9u"/>
+                        <segue destination="mFD-p8-h5C" kind="show" identifier="main" id="nuR-Io-hUG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1615" y="554"/>
+            <point key="canvasLocation" x="-826" y="554"/>
         </scene>
         <!--Kaamelott-->
         <scene sceneID="End-r0-zuO">
@@ -144,27 +144,17 @@
                             <outlet property="delegate" destination="Yx2-5r-u7G" id="BUd-Ua-Mp1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Kaamelott Sound Board" id="fap-Rc-FVF"/>
+                    <navigationItem key="navigationItem" title="Kaamelott Sound Board" id="fap-Rc-FVF">
+                        <barButtonItem key="rightBarButtonItem" image="information" id="lqo-qX-5gS">
+                            <connections>
+                                <segue destination="3DK-n5-lai" kind="show" id="YPC-gp-2fd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQX-ps-X02" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2952.8000000000002" y="-121.88905547226388"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Eho-Op-lUi">
-            <objects>
-                <navigationController id="2mb-kq-wf2" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="n37-Bw-TIq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="mFD-p8-h5C" kind="relationship" relationship="rootViewController" id="cAr-hD-vm1"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vLf-WZ-XZj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-714" y="554"/>
         </scene>
         <!--Crédit-->
         <scene sceneID="p6H-xk-zsd">
@@ -201,7 +191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="axF-pU-dXz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="156" y="-164"/>
+            <point key="canvasLocation" x="4303" y="564"/>
         </scene>
         <!--Kaamelott Sound Board-->
         <scene sceneID="R57-Or-5g3">
@@ -209,11 +199,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="mFD-p8-h5C" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Kaamelott Sound Board" id="Knq-yl-CFL">
-                        <barButtonItem key="rightBarButtonItem" image="information" id="UNO-eB-nLd">
-                            <connections>
-                                <segue destination="3DK-n5-lai" kind="show" id="Re4-1p-SQJ"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="information" id="UNO-eB-nLd"/>
                     </navigationItem>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="8Tg-mL-qEP">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -372,7 +358,13 @@
                             <outlet property="delegate" destination="kM1-aY-IaJ" id="kbZ-SL-GLo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Kaamelott Sound Board" id="daS-tl-6aO"/>
+                    <navigationItem key="navigationItem" title="Kaamelott Sound Board" id="tkn-0N-MFS">
+                        <barButtonItem key="rightBarButtonItem" image="information" id="5aF-nK-SW1">
+                            <connections>
+                                <segue destination="3DK-n5-lai" kind="show" id="Au4-O2-o3q"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pRr-9A-3SF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -519,7 +511,13 @@
                             <outlet property="delegate" destination="sFP-pe-hJZ" id="Ju8-0V-TBn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Kaamelott Sound Board" id="Wbv-y7-Cs4"/>
+                    <navigationItem key="navigationItem" title="Kaamelott Sound Board" id="onL-eA-eZu">
+                        <barButtonItem key="rightBarButtonItem" image="information" id="Bpq-8U-uWm">
+                            <connections>
+                                <segue destination="3DK-n5-lai" kind="show" id="xOK-p7-l8o"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gAA-MI-c2R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -589,4 +587,7 @@
         <image name="information" width="25" height="25"/>
         <image name="list" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="YPC-gp-2fd"/>
+    </inferredMetricsTieBreakers>
 </document>
